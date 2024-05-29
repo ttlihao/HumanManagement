@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HumanManagement.Models;
+namespace HumanManagement.DataAccess.Models;
 
 public partial class Attachment
 {

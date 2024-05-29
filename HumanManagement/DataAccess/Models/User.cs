@@ -13,6 +13,10 @@ public partial class User
 
     public string? Password { get; set; }
 
+    public string? RefreshToken { get; set; }
+
+    public DateTime? RefreshTokenExpired { get; set; }
+
     public int DaysOffCount { get; set; }
 
     public int DaysOffLimit { get; set; }

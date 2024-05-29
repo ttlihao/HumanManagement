@@ -9,8 +9,6 @@ public partial class Token
 
     public string? TokenString { get; set; }
 
-    public string? RefreshToken { get; set; }
-
     public DateTime? ExpirationDate { get; set; }
 
     public int? UserId { get; set; }

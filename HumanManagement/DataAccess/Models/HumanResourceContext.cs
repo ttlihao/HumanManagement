@@ -33,7 +33,7 @@ public partial class HumanResourceContext : DbContext
     {
         modelBuilder.Entity<Attachment>(entity =>
         {
-            entity.HasKey(e => e.Aid).HasName("PK__Attachme__C69007C82405BC51");
+            entity.HasKey(e => e.Aid).HasName("PK__Attachme__C69007C8C2689F8C");
 
             entity.Property(e => e.Aid).HasColumnName("AID");
             entity.Property(e => e.FilePath).HasMaxLength(255);
@@ -41,12 +41,12 @@ public partial class HumanResourceContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Attachments)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Attachmen__UserI__5535A963");
+                .HasConstraintName("FK__Attachmen__UserI__412EB0B6");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Roles__8AFACE3A6213F6A0");
+            entity.HasKey(e => e.RoleId).HasName("PK__Roles__8AFACE3AD49F6256");
 
             entity.Property(e => e.RoleId).HasColumnName("RoleID");
             entity.Property(e => e.RoleName).HasMaxLength(255);
@@ -54,38 +54,38 @@ public partial class HumanResourceContext : DbContext
 
         modelBuilder.Entity<Token>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Tokens__3214EC27367C2032");
+            entity.HasKey(e => e.Id).HasName("PK__Tokens__3214EC27419FCBA3");
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.ExpirationDate).HasColumnType("datetime");
-            entity.Property(e => e.RefreshToken).HasMaxLength(255);
             entity.Property(e => e.TokenString).HasMaxLength(255);
             entity.Property(e => e.UserId).HasColumnName("UserID");
 
             entity.HasOne(d => d.User).WithMany(p => p.Tokens)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Tokens__UserID__5812160E");
+                .HasConstraintName("FK__Tokens__UserID__440B1D61");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC7915B583");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC9588CBB3");
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
-            entity.Property(e => e.DaysOffLimit).HasDefaultValueSql("((14))");
             entity.Property(e => e.Password).HasMaxLength(255);
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
+            entity.Property(e => e.RefreshToken).HasMaxLength(255);
+            entity.Property(e => e.RefreshTokenExpired).HasColumnType("datetime");
             entity.Property(e => e.RoleId).HasColumnName("RoleID");
             entity.Property(e => e.Username).HasMaxLength(255);
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("FK__Users__RoleID__4F7CD00D");
+                .HasConstraintName("FK__Users__RoleID__3B75D760");
         });
 
         modelBuilder.Entity<UsersClaim>(entity =>
         {
-            entity.HasKey(e => e.UserClaimId).HasName("PK__UsersCla__E22E298489550204");
+            entity.HasKey(e => e.UserClaimId).HasName("PK__UsersCla__E22E2984AB4C60D3");
 
             entity.ToTable("UsersClaim");
 
@@ -96,7 +96,7 @@ public partial class HumanResourceContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.UsersClaims)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__UsersClai__UserI__52593CB8");
+                .HasConstraintName("FK__UsersClai__UserI__3E52440B");
         });
 
         OnModelCreatingPartial(modelBuilder);
